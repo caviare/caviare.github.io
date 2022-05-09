@@ -1,0 +1,104 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>使用 DNSAPI 来为你的网站配置 HTTPS - caviare</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="caviare"><meta name=description content="使用acme.sh脚本，申请ssl证书并且自动续期证书时间"><meta name=keywords content="acme,DNSAPI,HTTPS"><meta name=generator content="Hugo 0.98.0 with theme even"><link rel=canonical href=http://localhost:1313/post/create-https/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="使用 DNSAPI 来为你的网站配置  HTTPS"><meta property="og:description" content="使用acme.sh脚本，申请ssl证书并且自动续期证书时间"><meta property="og:type" content="article"><meta property="og:url" content="http://localhost:1313/post/create-https/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-08-18T21:36:38+08:00"><meta property="article:modified_time" content="2021-08-18T21:36:38+08:00"><meta itemprop=name content="使用 DNSAPI 来为你的网站配置  HTTPS"><meta itemprop=description content="使用acme.sh脚本，申请ssl证书并且自动续期证书时间"><meta itemprop=datePublished content="2021-08-18T21:36:38+08:00"><meta itemprop=dateModified content="2021-08-18T21:36:38+08:00"><meta itemprop=wordCount content="792"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="使用 DNSAPI 来为你的网站配置  HTTPS"><meta name=twitter:description content="使用acme.sh脚本，申请ssl证书并且自动续期证书时间"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Caviare</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Caviare</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>使用 DNSAPI 来为你的网站配置 HTTPS</h1><div class=post-meta><span class=post-time>2021-08-18</span><div class=post-category><a href=/categories/linux/>linux</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#1安装acmesh脚本>1、安装<strong>acme.sh</strong>脚本</a></li><li><a href=#2使用阿里云dnsapihttpsak-consolealiyuncomaccesskey自动签发证书>2、使用<a href=https://ak-console.aliyun.com/#/accesskey>阿里云DNSAPI</a>自动签发证书</a></li><li><a href=#copy安装证书>copy/安装证书</a></li><li><a href=#nginx配置>nginx配置</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><p>使用acme.sh脚本，申请ssl证书并且自动续期证书时间</p><hr><h3 id=1安装acmesh脚本>1、安装<strong>acme.sh</strong>脚本</h3><p>安装很简单, 一个命令:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>curl  https://get.acme.sh | sh -s email=my@example.com
+</span></span></code></pre></td></tr></table></div></div><p><strong>PS：这里的email填写自己常用的邮箱，直接复制安装的话后续会报错。</strong></p><p>普通用户和 root 用户都可以安装使用.
+安装过程进行了以下几步:</p><ol><li>把 acme.sh 安装到你的 <strong>home</strong> 目录下:</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>    ~/.acme.sh/
+</span></span></code></pre></td></tr></table></div></div><p>并创建 一个 bash 的 alias, 方便你的使用: <code>alias acme.sh=~/.acme.sh/acme.sh</code></p><ol start=2><li>自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.</li></ol><p><strong>安装过程不会污染已有的系统任何功能和文件</strong>, 所有的修改都限制在安装目录中: <code>~/.acme.sh/</code></p><h3 id=2使用阿里云dnsapihttpsak-consolealiyuncomaccesskey自动签发证书>2、使用<a href=https://ak-console.aliyun.com/#/accesskey>阿里云DNSAPI</a>自动签发证书</h3><p>首先，您需要登录您的阿里云帐户以获取您的 API 密钥。 <a href=https://ak-console.aliyun.com/#/accesskey>https://ak-console.aliyun.com/#/accesskey</a>
+然后设置全局变量</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>    export Ali_Key=&#34;sdfsdfsdfljlbjkljlkjsdfoiwje&#34;
+</span></span><span class=line><span class=cl>    export Ali_Secret=&#34;jlsdflanljkljlfdsaklkjflsa&#34;
+</span></span></code></pre></td></tr></table></div></div><p>现在让我们颁发证书：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>    acme.sh --issue --dns dns_ali -d example.com -d www.example.com
+</span></span></code></pre></td></tr></table></div></div><p>Ali_Key和Ali_Secret将被保存<code>~/.acme.sh/account.conf</code>，需要时会被重用。</p><h3 id=copy安装证书>copy/安装证书</h3><p>前面证书生成以后, 接下来需要把证书 copy 到真正需要用它的地方.</p><p>注意, 默认生成的证书都放在安装目录下: ~/.acme.sh/, 请不要直接使用此目录下的文件, 例如: 不要直接让 nginx/apache 的配置文件使用这下面的文件. 这里面的文件都是内部使用, 而且目录结构可能会变化.</p><p>正确的使用方法是使用 –installcert 命令,并指定目标位置, 然后证书文件会被copy到相应的位置。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>    acme.sh --installcert -d domain.com \
+</span></span><span class=line><span class=cl>    --key-file /etc/nginx/ssl/example/key.pem \
+</span></span><span class=line><span class=cl>    --fullchain-file /etc/nginx/ssl/example/cert.pem \
+</span></span><span class=line><span class=cl>    --reloadcmd &#34;service nginx reload&#34;
+</span></span></code></pre></td></tr></table></div></div><p>这里用的是 service nginx force-reload, 不是 service nginx reload, 据测试, reload 并不会重新加载证书, 所以用的 force-reload</p><h3 id=nginx配置>nginx配置</h3><p>附带我自己的nginx配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>server {
+</span></span><span class=line><span class=cl>    listen       80;
+</span></span><span class=line><span class=cl>    server_name  example.com www.example.com;
+</span></span><span class=line><span class=cl>    #http访问重定向至https
+</span></span><span class=line><span class=cl>    rewrite ^ https://$http_host$request_uri? permanent;
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>server {
+</span></span><span class=line><span class=cl>        listen 443 ssl;
+</span></span><span class=line><span class=cl>        ssl_certificate /etc/nginx/ssl/example/cert.pem;
+</span></span><span class=line><span class=cl>        ssl_certificate_key /etc/nginx/ssl/key.pem;
+</span></span><span class=line><span class=cl>         keepalive_timeout   70;
+</span></span><span class=line><span class=cl>        server_name www.example.com example.com;
+</span></span><span class=line><span class=cl>        #禁止在header中出现服务器版本，防止黑客利用版本漏洞攻击
+</span></span><span class=line><span class=cl>        server_tokens off;
+</span></span><span class=line><span class=cl>        #如果是全站 HTTPS 并且不考虑 HTTP 的话，
+</span></span><span class=line><span class=cl>        #可以加入 HSTS 告诉你的浏览器本网站全站加密，并且强制用 HTTPS 访问
+</span></span><span class=line><span class=cl>        #add_header Strict-Transport-Security &#34;max-age=31536000; includeSubdomains&#34;;
+</span></span><span class=line><span class=cl>        fastcgi_param   HTTPS               on;
+</span></span><span class=line><span class=cl>        fastcgi_param   HTTP_SCHEME         https;
+</span></span><span class=line><span class=cl>        access_log      /var/log/nginx/wiki.xby1993.net.access.log;
+</span></span><span class=line><span class=cl>        error_log       /var/log/nginx/wiki.xby1993.net.error.log;
+</span></span><span class=line><span class=cl>        location / {
+</span></span><span class=line><span class=cl>                proxy_set_header Host $http_host;
+</span></span><span class=line><span class=cl>                proxy_set_header X-Real-IP $remote_addr;
+</span></span><span class=line><span class=cl>                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span class=line><span class=cl>                proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span class=line><span class=cl>                proxy_pass         http://127.0.0.1:2368;
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>caviare</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-08-18</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content>MIT</span></p></div><footer class=post-footer><nav class=post-nav><a class=prev href=/post/ugly-code/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">如何编写无法维护的代码</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/three-elements-of-photography/><span class="next-text nav-default">摄影曝光三要素笔记</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2021-08-18 21:36:38 \u002b0800 \u002b0800",title:"使用 DNSAPI 来为你的网站配置  HTTPS",clientID:"ef7083cd3dab1096c3be",clientSecret:"cb2bec5e1f4727f87304d4131ba7ed408812b68d",repo:"Gitalk",owner:"caviare",admin:["caviare"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script><noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=https://github.com/caviare class="iconfont icon-github" title=github></a>
+<a href=https://space.bilibili.com/4534580 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=http://localhost:1313/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2021 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>糖醋虾仁</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js></script></body></html>
