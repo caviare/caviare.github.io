@@ -120,27 +120,27 @@ biu biu biu.
 
 ## default
 
-![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
+![img](https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg "img")
 
 {{% center %}}
 
 ## center
 
-![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
+![img](https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg "img")
 {{% /center %}}
 
 {{% right %}}
 
 ## right
 
-![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
+![img](https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg "img")
 {{% /right %}}
 
 {{% left %}}
 
 ## left
 
-![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
+![img](https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg "img")
 {{% /left %}}
 
 ---
@@ -154,10 +154,10 @@ biu biu biu.
 {{%/* figure class="left" src="/path/to/img.gif" title="left" alt="img" */%}}
 ```
 
-{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default" alt="img" %}}
-{{% figure class="center" src="https://sm.ms/image/tXbLDioexBEOkVm" title="center" alt="img" %}}
-{{% figure class="right" src="https://sm.ms/image/tXbLDioexBEOkVm" title="right" alt="img" %}}
-{{% figure class="left" src="https://sm.ms/image/tXbLDioexBEOkVm" title="left" alt="img" %}}
+{{% figure src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="default" alt="img" %}}
+{{% figure class="center" src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="center" alt="img" %}}
+{{% figure class="right" src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="right" alt="img" %}}
+{{% figure class="left" src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="left" alt="img" %}}
 
 ---
 
@@ -179,10 +179,10 @@ biu biu biu.
 
 ## hybrid in center
 
-{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default" alt="img" %}}
-{{% figure class="right" src="https://sm.ms/image/tXbLDioexBEOkVm" title="right" alt="img" %}}
+{{% figure src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="default" alt="img" %}}
+{{% figure class="right" src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="right" alt="img" %}}
 {{% left %}}
-{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default in left" alt="img" %}}
+{{% figure src="https://s2.loli.net/2022/05/10/tXbLDioexBEOkVm.jpg" title="default in left" alt="img" %}}
 {{% /left %}}
 {{% /center %}}
 
