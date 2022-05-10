@@ -85,7 +85,7 @@ server {
 server {
         listen 443 ssl;
         ssl_certificate /etc/nginx/ssl/example/cert.pem;
-        ssl_certificate_key /etc/nginx/ssl/key.pem;
+        ssl_certificate_key /etc/nginx/ssl/example/key.pem;
          keepalive_timeout   70;
         server_name www.example.com example.com;
         #禁止在header中出现服务器版本，防止黑客利用版本漏洞攻击
