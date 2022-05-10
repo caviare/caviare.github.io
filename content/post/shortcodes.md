@@ -120,27 +120,27 @@ biu biu biu.
 
 ## default
 
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
 
 {{% center %}}
 
 ## center
 
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
 {{% /center %}}
 
 {{% right %}}
 
 ## right
 
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
 {{% /right %}}
 
 {{% left %}}
 
 ## left
 
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+![img](https://sm.ms/image/tXbLDioexBEOkVm "img")
 {{% /left %}}
 
 ---
@@ -154,10 +154,10 @@ biu biu biu.
 {{%/* figure class="left" src="/path/to/img.gif" title="left" alt="img" */%}}
 ```
 
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default" alt="img" %}}
-{{% figure class="center" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="center" alt="img" %}}
-{{% figure class="right" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="right" alt="img" %}}
-{{% figure class="left" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="left" alt="img" %}}
+{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default" alt="img" %}}
+{{% figure class="center" src="https://sm.ms/image/tXbLDioexBEOkVm" title="center" alt="img" %}}
+{{% figure class="right" src="https://sm.ms/image/tXbLDioexBEOkVm" title="right" alt="img" %}}
+{{% figure class="left" src="https://sm.ms/image/tXbLDioexBEOkVm" title="left" alt="img" %}}
 
 ---
 
@@ -179,10 +179,10 @@ biu biu biu.
 
 ## hybrid in center
 
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default" alt="img" %}}
-{{% figure class="right" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="right" alt="img" %}}
+{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default" alt="img" %}}
+{{% figure class="right" src="https://sm.ms/image/tXbLDioexBEOkVm" title="right" alt="img" %}}
 {{% left %}}
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default in left" alt="img" %}}
+{{% figure src="https://sm.ms/image/tXbLDioexBEOkVm" title="default in left" alt="img" %}}
 {{% /left %}}
 {{% /center %}}
 

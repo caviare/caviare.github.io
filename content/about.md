@@ -6,7 +6,7 @@ menu: "main"
 weight: 50
 ---
 
-{{% figure class="center" src="//ww1.sinaimg.cn/large/005M2kKhly1gdl8m3ijqtj308c08cmxg.jpg"  alt="img" %}}
+{{% figure class="center" src="https://sm.ms/image/D89VxmspkNRhI4Q"  alt="img" %}}
 
 你可以叫我虾仁（PS：我也不知道什么时候开始叫这个的或许因为我是个吃货吧HAHAHAHA），96射手座，喜欢折腾代码，吃各种美食，玩游戏。
 
