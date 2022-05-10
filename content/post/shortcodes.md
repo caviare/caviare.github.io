@@ -1,16 +1,16 @@
 ---
-title: "特殊短语规则"
-date: 2016-08-30T16:01:23+08:00
-lastmod: 2018-02-01T18:01:23+08:00
-draft: false
-categories: [Even示例]
-weight: 999
-
+title: "Hugo自动化部署"
+date: 2022-05-10T17:31:09+08:00
+lastmod: 2022-05-10T17:31:09+08:00
+draft: true
+keywords: ["Hugo", "Github Action", "GitHub Pages"]
+description: "使用 Github Action 持续集成工具，自动将博客部署至 GitHub Pages 或 云服务中。"
+categories: ["技术"]
+author: "caviare"
+weight: 998
 ---
 
-
 # Admonition
-
 
 {{% admonition abstract abstract %}}
 biu biu biu.
@@ -21,6 +21,7 @@ biu biu biu.
 biu biu biu.
 {{%/* /admonition */%}}
 ```
+
 <!--more-->
 
 {{% admonition note "I'm title!" false %}}
@@ -50,8 +51,6 @@ Without title.
 
 {{%/* /admonition */%}}
 ```
-
-
 
 {{% admonition info "info" %}}
 biu biu biu.
@@ -97,45 +96,59 @@ biu biu biu.
 
 ```markdown
 ## default
+
 ![img](/path/to/img.gif "img")
 
 {{%/* center */%}}
+
 ## center
+
 ![img](/path/to/img.gif "img")
 {{%/* /center */%}}
 
 {{%/* right */%}}
+
 ## right
+
 ![img](/path/to/img.gif "img")
 {{%/* /right */%}}
 
 {{%/* left */%}}
+
 ## left
+
 ![img](/path/to/img.gif "img")
 {{%/* /left */%}}
 ```
 
 ## default
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+
+![img](https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg "img")
 
 {{% center %}}
+
 ## center
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+
+![img](https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg "img")
 {{% /center %}}
 
 {{% right %}}
+
 ## right
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+
+![img](https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg "img")
 {{% /right %}}
 
 {{% left %}}
+
 ## left
-![img](https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg "img")
+
+![img](https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg "img")
 {{% /left %}}
 
 ---
 
-## figure with class 
+## figure with class
 
 ```
 {{%/* figure src="/path/to/img.gif" title="default" alt="img" */%}}
@@ -144,10 +157,10 @@ biu biu biu.
 {{%/* figure class="left" src="/path/to/img.gif" title="left" alt="img" */%}}
 ```
 
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default" alt="img" %}}
-{{% figure class="center" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="center" alt="img" %}}
-{{% figure class="right" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="right" alt="img" %}}
-{{% figure class="left" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="left" alt="img" %}}
+{{% figure src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="default" alt="img" %}}
+{{% figure class="center" src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="center" alt="img" %}}
+{{% figure class="right" src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="right" alt="img" %}}
+{{% figure class="left" src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="left" alt="img" %}}
 
 ---
 
@@ -166,11 +179,13 @@ biu biu biu.
 ```
 
 {{% center %}}
+
 ## hybrid in center
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default" alt="img" %}}
-{{% figure class="right" src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="right" alt="img" %}}
+
+{{% figure src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="default" alt="img" %}}
+{{% figure class="right" src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="right" alt="img" %}}
 {{% left %}}
-{{% figure src="https://wx1.sinaimg.cn/small/006SToa6ly1fm07summ2gj30qo0qomzu.jpg" title="default in left" alt="img" %}}
+{{% figure src="https://tva1.sinaimg.cn/large/005M2kKhly1gwqaq491wuj30p00p0wf0.jpg" title="default in left" alt="img" %}}
 {{% /left %}}
 {{% /center %}}
 
@@ -179,7 +194,9 @@ biu biu biu.
 # Music 163
 
 ## Params
+
 - `id`
+
   - required param
   - you can extract from music url
   - url format http://music.163.com/#/song?id=28196554
@@ -202,19 +219,19 @@ biu biu biu.
 
 ```
 {{%/* music id="28196554" */%}}
-{{%/* music id="28196554" auto="1" */%}}
+{{%/* music id="28196554" "1" */%}}
 ```
 
 - Example
 
 ```
-{{%/* music "28196554" */%}}
+  {{%/* music "28196554" */%}}
 ```
 
-{{%/* music "28196554" */%}}
+{{% music id="28196554" %}}
 
 <style>
-.post-content img {
-  height: 64px;
-}
+  .post img {
+    height: 64px
+  }
 </style>
