@@ -2,7 +2,7 @@
 title: "Hugo自动化部署"
 date: 2022-05-10T17:31:09+08:00
 lastmod: 2022-05-10T17:31:09+08:00
-draft: true
+draft: false
 keywords: ["Hugo", "Github Action", "GitHub Pages"]
 description: "使用 Github Action 持续集成工具，自动将博客部署至 GitHub Pages 或 云服务中。"
 categories: ["技术"]
@@ -84,6 +84,12 @@ weight: 998
             publish_dir: ./public
     ```
 
+    如果你的主干分支主干分支不是master 是 main 需要将配置的`refs/heads/mai`修改为`refs/heads/master`
+
+    设置完成后把本地仓库push至github就会可以自动运行 GitHub Action 啦。
+
+    如果脚本运行失败，并且你并没有用到`.gitmodules`这步操作可以试图删除`actions/checkout@v3`这一段配置后再push一遍代码看看。 
+
     **配置中的`GITHUBTOKEN`你可以把它认为是一个变量，我们需要在仓库的 settings 里找到 Secrets 下的 Actions 然后点击 New repository secret 生成一个名字叫`GITHUBTOKEN`的变量。**
 
     ![image.png](https://s2.loli.net/2022/05/13/ytfASRbYxp1Faek.png)
@@ -92,11 +98,7 @@ weight: 998
 
    ![1652373719_1_.jpg](https://s2.loli.net/2022/05/13/YAIW9KnXu7iOL2D.png)
 
-    主干分支不是master 是 main ， 如果你的主干分支是master需要修改下配置文件
-
-    设置完成后把本地仓库push至github就会可以自动运行 GitHub Action 啦。
-
-    如果脚本运行失败，并且你并没有用到`.gitmodules`这步操作可以试图删除`actions/checkout@v3`这一步操作后再push一遍代码看看。 
+    
 
 ## 自动部署至服务器
 
